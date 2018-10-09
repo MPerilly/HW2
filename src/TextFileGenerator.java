@@ -1,3 +1,4 @@
+import java.util.Random;
 public class TextFileGenerator {
     int numberOfStudents;
     int maxNumTimeSlots;
@@ -26,5 +27,20 @@ public class TextFileGenerator {
     }
     public TextFileGenerator() {
         this(10, 6, 5);
+    }
+    //Accessor Methods:
+    public int getNumberOfStudents() {return this.numberOfStudents;}
+    public int getMaxNumTimeSlots() {return this.maxNumTimeSlots;}
+    public int getSeed() {return this.randSeed;}
+    //Functions:
+    public String[] pickNames() {
+        Random r = new Random(randSeed);
+        int poolIndex;
+        String[] nameList = new String[numberOfStudents];
+        for (int i = 0; i < numberOfStudents; i++){
+            poolIndex = r.nextInt((nameMax + 1));
+            nameList[i] = namePool[poolIndex];
+        }
+        return nameList;
     }
 }
