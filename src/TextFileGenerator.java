@@ -43,4 +43,16 @@ public class TextFileGenerator {
         }
         return nameList;
     }
+    public int[][] genWeekdays() {
+        Random r = new Random((randSeed +1));
+        int[][] studentAvailDays = new int[this.numberOfStudents][7];
+        for (int i = 0; i < this.numberOfStudents; i++) {
+            int numOfDaysFree = r.nextInt(7);
+            for (int k = 0; k < numOfDaysFree; k++) {
+                int freeDay = r.nextInt(7);
+                studentAvailDays[i][freeDay] = 1;
+            }
+        }
+        return studentAvailDays;
+    }
 }
