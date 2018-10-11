@@ -33,6 +33,7 @@ public class TextFileGenerator {
     public int getMaxNumTimeSlots() {return this.maxNumTimeSlots;}
     public int getSeed() {return this.randSeed;}
     //Functions:
+    //Picking Names:
     public String[] pickNames() {
         Random r = new Random(randSeed);
         int poolIndex;
@@ -43,7 +44,8 @@ public class TextFileGenerator {
         }
         return nameList;
     }
-    public int[][] genWeekdays() {
+    //Generating free days for students:
+    public int[][] genFreeDays() {
         Random r = new Random((randSeed +1));
         int[][] studentAvailDays = new int[this.numberOfStudents][7];
         for (int i = 0; i < this.numberOfStudents; i++) {
@@ -54,5 +56,48 @@ public class TextFileGenerator {
             }
         }
         return studentAvailDays;
+    }
+    public int[] stripFreeDays(int[][] freeDays, int studentIndex) {
+        int[] studentSpecificDays = new int[7];
+        for (int i = 0; i < 7; i++) {
+            studentSpecificDays[i] = freeDays[studentIndex][i];
+        }
+        return studentSpecificDays;
+    }
+    public char[] convertFreeDays(int[] strippedFreeDays) {
+        char[] letterDays;
+        int[] daysIndex;
+        int daysIndexIndex = 0;
+        int freeDayIndex = 0;
+        int freeCount = 0;
+        for (int i = 0; i < 7; i++) {
+            if(strippedFreeDays[i] == 1) {
+                freeCount++;
+            }
+        }
+        daysIndex = new int[freeCount];
+        letterDays = new char[freeCount];
+        for (int i = 0; i < 7; i++) {
+            if(strippedFreeDays[i] == 1) {
+                daysIndex[daysIndexIndex] = freeDayIndex;
+                daysIndexIndex++;
+            }
+            freeDayIndex++;
+        }
+        for (int i = 0; i < daysIndex.length; i++){
+            switch(daysIndex[i]) {
+                case 0: letterDays[i] = 'M';
+                        break;
+                case 1: letterDays[i] = 'T';
+                        break;
+                case 2: letterDays[i] = 'W';
+                        break;
+                case 3: letterDays[i] = 'H';
+                        break;
+                case 4: letterDays[i] = 'F';
+                        break;
+            }
+        }
+        return letterDays;
     }
 }
