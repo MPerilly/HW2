@@ -47,19 +47,19 @@ public class TextFileGenerator {
     //Generating free days for students:
     public int[][] genFreeDays() {
         Random r = new Random((randSeed +1));
-        int[][] studentAvailDays = new int[this.numberOfStudents][7];
+        int[][] studentAvailDays = new int[this.numberOfStudents][5];
         for (int i = 0; i < this.numberOfStudents; i++) {
-            int numOfDaysFree = r.nextInt(7);
+            int numOfDaysFree = r.nextInt(5);
             for (int k = 0; k < numOfDaysFree; k++) {
-                int freeDay = r.nextInt(7);
+                int freeDay = r.nextInt(5);
                 studentAvailDays[i][freeDay] = 1;
             }
         }
         return studentAvailDays;
     }
     public int[] stripFreeDays(int[][] freeDays, int studentIndex) {
-        int[] studentSpecificDays = new int[7];
-        for (int i = 0; i < 7; i++) {
+        int[] studentSpecificDays = new int[5];
+        for (int i = 0; i < 5; i++) {
             studentSpecificDays[i] = freeDays[studentIndex][i];
         }
         return studentSpecificDays;
@@ -70,14 +70,14 @@ public class TextFileGenerator {
         int daysIndexIndex = 0;
         int freeDayIndex = 0;
         int freeCount = 0;
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 5; i++) {
             if(strippedFreeDays[i] == 1) {
                 freeCount++;
             }
         }
         daysIndex = new int[freeCount];
         letterDays = new char[freeCount];
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 5; i++) {
             if(strippedFreeDays[i] == 1) {
                 daysIndex[daysIndexIndex] = freeDayIndex;
                 daysIndexIndex++;
