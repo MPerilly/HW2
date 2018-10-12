@@ -40,9 +40,9 @@ public class TextFileGenerator {
         p = Paths.get(this.path);
     }
     public TextFileGenerator() {
-        this(10, 6, 5,
+        this(50, 6, 5,
                 "/Users/mperilly/Google Drive/College/Junior/Data Structures/Homework/Project 2/",
-                "test");
+                "test1");
     }
     //Accessor Methods:
     public int getNumberOfStudents() {return this.numberOfStudents;}
