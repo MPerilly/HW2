@@ -39,6 +39,10 @@ public class TextFileGenerator {
         path = writeDirectory + fileName + ".txt";
         p = Paths.get(this.path);
     }
+    public TextFileGenerator(int num, int max, int seed) {
+        this(num, max, seed, "/Users/mperilly/Google Drive/College/Junior/Data Structures/Homework/Project 2/",
+                "test2");
+    }
     public TextFileGenerator() {
         this(50, 6, 5,
                 "/Users/mperilly/Google Drive/College/Junior/Data Structures/Homework/Project 2/",
