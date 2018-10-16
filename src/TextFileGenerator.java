@@ -192,6 +192,7 @@ public class TextFileGenerator {
                 writer.write(">");
             }
             writer.write(")");
+            writer.close();
             return true;
         }
         catch (IOException ex) {
