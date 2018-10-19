@@ -22,8 +22,8 @@ public class StackList<E> {
             this.next = newNext;
         }
     }
-    int size;
-    Node<E> top;
+    private int size;
+    private Node<E> top;
     //Accessor methods:
     public int getSize() {return this.size;}
     public boolean isEmpty() {
