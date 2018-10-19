@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class TextFileReader {
+public class TextFileReader{
     String directory;
     String fileName;
     String p;
@@ -26,9 +26,13 @@ public class TextFileReader {
         path = Paths.get(p);
     }
     //Methods:
-    public StackList<Student> generateStudents() {
+    public StackList<Student> generateStudents() throws FileNotFoundException{
         StackList<Student> studentStackList = new StackList<>();
         StackList<String> rawData = readLines();
+        if (rawData == null) {
+            FileNotFoundException ex = new FileNotFoundException();
+            throw ex;
+        }
         String[] studentDayData = null;
         int numOfStudents = rawData.getSize();
         for (int i = 0; i < numOfStudents; i++) {
@@ -41,13 +45,11 @@ public class TextFileReader {
                     StringBuilder sb = new StringBuilder(studentDayDataWithName[d]);
                     if (sb.lastIndexOf("(") != 0) {
                         sb.delete(0, 3);
-                    }
-                    else{
+                    } else {
                         sb.deleteCharAt(0);
                     }
                     name = sb.toString();
-                }
-                else {
+                } else {
                     studentDayData[d - 1] = studentDayDataWithName[d];
                 }
             }
@@ -55,7 +57,7 @@ public class TextFileReader {
             String[][] freeTimeSlots = new String[freeDays.length][];
             for (int j = 0; j < studentDayData.length; j++) {
                 boolean lastCheck = false;
-                if (j == studentDayData.length-1) {
+                if (j == studentDayData.length - 1) {
                     lastCheck = true;
                 }
                 StringBuilder sb = new StringBuilder(studentDayData[j]);
@@ -67,11 +69,9 @@ public class TextFileReader {
                     StringBuilder sb2 = new StringBuilder(studentTimeDataWithDay[k + 1]);
                     if (k + 2 == studentTimeDataWithDay.length && lastCheck) {
                         sb2.delete(studentTimeDataWithDay[k + 1].length() - 3, studentTimeDataWithDay[k + 1].length());
-                    }
-                    else if (k + 2 == studentTimeDataWithDay.length) {
+                    } else if (k + 2 == studentTimeDataWithDay.length) {
                         sb2.delete(studentTimeDataWithDay[k + 1].length() - 2, studentTimeDataWithDay[k + 1].length());
-                    }
-                    else {
+                    } else {
                         sb2.deleteCharAt(studentTimeDataWithDay[k + 1].length() - 1);
                     }
                     freeTimeSlots[j][k] = sb2.toString();
@@ -96,7 +96,7 @@ public class TextFileReader {
             }
         }
         catch (FileNotFoundException ex) {
-            ex.printStackTrace();
+            return null;
         }
         return students;
     }
