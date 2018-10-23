@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class TextFileWriter {
     public static void main(String[] args) {
-        TextFileGenerator generator = new TextFileGenerator(20, 5, 6);
+        TextFileGenerator generator = new TextFileGenerator(100, 4, 2);
         String[] names = generator.pickNames();
         int[][] availableDays = generator.genFreeDays();
         int[][][] availableSlots = generator.genFreeTimes();

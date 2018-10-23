@@ -41,7 +41,7 @@ public class TextFileGenerator {
     }
     public TextFileGenerator(int num, int max, int seed) {
         this(num, max, seed, "/Users/mperilly/Google Drive/College/Junior/Data Structures/Homework/Project 2/",
-                "test2");
+                "MPTextFile3");
     }
     public TextFileGenerator() {
         this(50, 6, 5,

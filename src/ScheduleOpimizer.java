@@ -25,7 +25,34 @@ public class ScheduleOpimizer {
                     try {
                         this.reader = new TextFileReader(this.dir, this.fname);
                         this.students = reader.generateStudents();
-                        optimize();
+                        int [][] optTimes = optimize();
+                        for (int i = 0; i < optTimes.length; i++) {
+                            String day = null;
+                            switch (i) {
+                                case 0: day = "Monday";
+                                    break;
+                                case 1: day = "Tuesday";
+                                    break;
+                                case 2: day = "Wednesday";
+                                    break;
+                                case 3: day = "Thursday";
+                                    break;
+                                case 4: day = "Friday";
+                                    break;
+                            }
+                            System.out.println(day + " , students available in slot:");
+                            for (int j = 0; j < optTimes[i].length; j++) {
+                                String time = null;
+                                if (j == 0) {
+                                    time = "0900";
+                                }
+                                else {
+                                    time = (j + 9) +"00";
+                                }
+                                System.out.print(time + ": " + optTimes[i][j] + ", ");
+                            }
+                            System.out.println();
+                        }
                         System.out.println(getOutput());
                     } catch (FileNotFoundException ex) {
                         System.out.println("Invalid file name or directory. Please try again.");
@@ -53,7 +80,7 @@ public class ScheduleOpimizer {
     private int[] getOptimal() {
         int bestDay = 0;
         int bestTime = 0;
-        int max = studentScheduleCheck[0][0];
+        int max = this.studentScheduleCheck[0][0];
         for (int i = 0; i < this.studentScheduleCheck.length; i++) {
             for (int j = 0; j < this.studentScheduleCheck[i].length; j++) {
                 if (this.studentScheduleCheck[i][j] > max) {
